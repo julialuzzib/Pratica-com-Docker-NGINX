@@ -1,0 +1,10 @@
+services:
+  techvision-nginx:
+    image: nginx:alpine
+    container_name: techvision-server
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./blog:/usr/share/nginx/html/blog:ro
+      - ./docs:/usr/share/nginx/html/docs:ro
