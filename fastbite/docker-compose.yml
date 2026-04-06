@@ -1,0 +1,15 @@
+services:
+  fastbite-node:
+    build: ./app
+    restart: always
+    #não tem 'ports' para não expor o host
+
+  nginx-proxy:
+    image: nginx:alpine
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - fastbite-node
